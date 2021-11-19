@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+   - name: tools
+     package:
+      name: ['nano', 'wget', 'python3', 'curl', 'python3-pip']
+   - name: install flask
+     pip: name=flask
+   - name: Clone repository
+     ansible.builtin.git:
+      repo: https://github.com/runalsh/and_lab.git
+      version: lab
+      dest: /home/vagrant/and_lab
+   - name: start flask
+     shell: "python3 /home/vagrant/and_lab/2/app.py"
