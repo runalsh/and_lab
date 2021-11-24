@@ -7,8 +7,12 @@ statecon=
 proc=
 IP=
 state=
-row=
+
 whoscript=organisation
+declare -i rowdef
+declare -i row
+rowdef=2
+row=2
 
 CLEAR='\033[0m'
 RED='\033[0;31m'
@@ -66,7 +70,14 @@ else
 statecon=$state
 fi  fi  fi  fi 
 
+#check state  (доработать)
+state_check=$(sudo netstat -tunapl | awk '/'"$proc/"' {print $6}' | grep -wi "$statecon")
+if [[ -z "$state_check" ]]; then
+  echo "Process with same State not found"
+  exit
+fi
 
+# echo "$state_check"
 # echo "state posle proverki = $state"
 # echo "statecon posle proverki = $statecon"
 # echo "row $row"
@@ -77,6 +88,12 @@ if [ "$who" != "$whoscript" ]; then
 whoscript=$who
 fi  
 
+if [ "$row" -ne "$rowdef" ]; then 
+rowdef=$row
+fi  
+
+# echo "rowdef $rowdef"
+# echo "row $row"
 
 result=`sudo netstat -tunapl | 
 #добавляем фильтр  для state, отключаем регистрозависимость
@@ -88,7 +105,7 @@ sort |
 uniq -c | 
 sort | 
 # добавил строки
-tail -n"$row" | 
+tail -n"$rowdef" | 
 grep -oP '(\d+\.){3}\d+' | 
 while 
 	read IP ; 
