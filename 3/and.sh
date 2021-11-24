@@ -13,6 +13,12 @@ whoscript=organisation
 CLEAR='\033[0m'
 RED='\033[0;31m'
 
+#depend
+if [[ -z "dpkg -l | cut -d " " -f 3 | grep "^whois" ]]; then
+  sudo apt install -y whois &>/dev/null
+fi
+
+
 #справка, раз сделал пусть будет
 function usage() {
   if [ -n "$1" ]; then
