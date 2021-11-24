@@ -1,5 +1,3 @@
-скрипт
-
 Справка 
 
 Usage: ./and.sh [-p process] [-s state] [-w whois][-r row][-v verbose]
@@ -15,3 +13,10 @@ Usage: ./and.sh [-p process] [-s state] [-w whois][-r row][-v verbose]
   -v|--verbose     Optional. Logging on. By default off  (Ex: -v or dont use)
   
 Example: ./and.sh [-p chrome] [-s listen] [-w city][-r 3][-v]
+
+
+
+TODO
+добавить проверок вводимых данных по типу,   
+что такое в задании ss уточнить , 
+доделать число коннектов под каждую страну (просто, но нет времени)
