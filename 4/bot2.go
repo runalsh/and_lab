@@ -16,12 +16,12 @@ import (
 )
 
 var (
-	// глобальная переменная в которой храним токен
+	// токен
 	telegramBotToken string
 )
 
 func init() {
-	// принимаем на входе флаг -telegrambottoken
+	// аргумент
 	flag.StringVar(&telegramBotToken, "tt", "", "Telegram Bot Token")
 	flag.Parse()
 
