@@ -61,7 +61,7 @@ func getTasks() []string {
 
 
 func main() {
-	// используя токен создаем новый инстанс бота
+	// новый инстанс бота
 	bot, err := tgbotapi.NewBotAPI(telegramBotToken)
 	if err != nil {
 		log.Panic(err)
@@ -71,17 +71,17 @@ func main() {
 	
 	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	// u - структура с конфигом для получения апдейтов
+	// для получения апдейтов
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 
-	// используя конфиг u создаем канал в который будут прилетать новые сообщения
+	// используя конфиг u создаем канал
 	updates := bot.GetUpdatesChan(u)
 
-	// в канал updates прилетают структуры типа Update
-	// вычитываем их и обрабатываем
+	// в канал updates прилетают  Update
+	// 
 	for update := range updates {
-		// универсальный ответ на любое сообщение
+		// универсальный ответ 
 		reply := "Type /help to see a tip"
 		if update.Message == nil {
 			continue
