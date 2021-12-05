@@ -18,3 +18,4 @@ Type /git to receive course repo link
 Type /tasks to get list of complited homeworks
 Type /taskX where is X - number of homework to get link
 
+Test bot https://t.me/annvjskgvnkd_bot
