@@ -2,12 +2,13 @@
 #set -x	
 
 
-# обнуляемся,  пусть будет
+# clean var
 statecon=
 proc=
 IP=
 state=
 
+#prereq
 whoscript=organisation
 declare -i rowdef
 declare -i row
@@ -25,7 +26,7 @@ if [[ -z "$check_whois" ]]; then
   sudo apt install -y whois &>/dev/null
 fi
 
-#справка, раз сделал пусть будет
+#faq 
 function usage() {
   if [ -n "$1" ]; then
     echo -e "${RED} $1${CLEAR}\n";
@@ -41,7 +42,7 @@ function usage() {
   exit 1
 }
 
-#отбивка
+#get args
 while [[ "$#" > 0 ]]; do case $1 in
   -p|--process) proc="$2"; shift;shift;;
   -s|--state) state="$2";shift;shift;;
@@ -70,7 +71,7 @@ else
 statecon=$state
 fi  fi  fi  fi 
 
-#check state  (доработать)
+#check state 
 state_check=$(sudo netstat -tunapl | awk '/'"$proc/"' {print $6}' | grep -wi "$statecon")
 if [[ -z "$state_check" ]]; then
   echo "Process with same State not found"
@@ -116,4 +117,3 @@ while
 
 echo $result
 
-# todo- добавить проверок вводимых данных по типу,   что такое в задании ss уточнить , 
