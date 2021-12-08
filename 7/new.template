@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   InstanceName:
-    Description: Name of creating EC2Instances
+    Description: ec2 project
     Type: String
     Default: EC2Instance
   InstanceType:
