@@ -1,0 +1,491 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  InstanceName:
+    Description: Name of creating EC2Instances
+    Type: String
+    Default: EC2Instance
+  InstanceType:
+    Description: inst type
+    Type: String
+    Default: t1.micro
+    AllowedValues:
+      - t1.micro
+      - t2.nano
+      - t2.micro
+      - t2.small
+      - t2.medium
+      - t2.large
+    ConstraintDescription: inst type
+
+  BucketName:
+    Description: s3 storage
+    Type: String
+    Default: runalsh
+    ConstraintDescription: index html an nginx conf geet from s3 buck
+  KeyName:
+    Description: key pair in ec2
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: key pair in ec2
+Metadata:
+  'AWS::CloudFormation::Designer':
+    2a76de76-cb17-4805-b6c1-d7b2fb6bfc45:
+      size:
+        width: 860
+        height: 690
+      position:
+        x: -4170
+        'y': 900
+      z: 0
+      embeds:
+        - 4c75e644-3847-4b83-9924-ee7b5a94d168
+        - de2f3526-4299-4a93-8898-a497c31c2868
+        - 5812a529-f50e-4031-92e9-ab3fb6f770e4
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+        - d3f37e25-a0f8-42a5-8adb-21828dbaba6d
+        - 28256394-0568-49ea-886f-1231dbf10b31
+        - f51b7ca5-b1aa-4c8f-a2b1-1c05937d9850
+        - f184abfa-8830-47ae-99a4-e25be7846f0d
+        - 041c0c2c-42f1-499c-bc90-fbcb76f059b7
+        - 38f62ddb-8c7d-4446-8760-68639c0bc34a
+    28256394-0568-49ea-886f-1231dbf10b31:
+      size:
+        width: 230
+        height: 120
+      position:
+        x: -4130
+        'y': 1170
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds:
+        - 13a39a9e-e186-4dc3-806d-cbdd01eb142d
+      iscontainedinside:
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+    5963e42a-d415-4459-84c3-895bb1e0563c:
+      size:
+        width: 300
+        height: 130
+      position:
+        x: -3680
+        'y': 1180
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds:
+        - 5bd86821-420c-4d27-a234-f84e82140f6b
+      iscontainedinside:
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+    13a39a9e-e186-4dc3-806d-cbdd01eb142d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -4040
+        'y': 1200
+      z: 2
+      parent: 28256394-0568-49ea-886f-1231dbf10b31
+      embeds: []
+      isassociatedwith:
+        - 5812a529-f50e-4031-92e9-ab3fb6f770e4
+      iscontainedinside:
+        - 28256394-0568-49ea-886f-1231dbf10b31
+        - 28256394-0568-49ea-886f-1231dbf10b31
+        - 28256394-0568-49ea-886f-1231dbf10b31
+        - 28256394-0568-49ea-886f-1231dbf10b31
+    5bd86821-420c-4d27-a234-f84e82140f6b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3550
+        'y': 1210
+      z: 2
+      parent: 5963e42a-d415-4459-84c3-895bb1e0563c
+      embeds: []
+      isassociatedwith:
+        - 5812a529-f50e-4031-92e9-ab3fb6f770e4
+      iscontainedinside:
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+    5812a529-f50e-4031-92e9-ab3fb6f770e4:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3800
+        'y': 1300
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+      iscontainedinside:
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+    041c0c2c-42f1-499c-bc90-fbcb76f059b7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3770
+        'y': 1100
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+      iscontainedinside:
+        - 28256394-0568-49ea-886f-1231dbf10b31
+        - 5963e42a-d415-4459-84c3-895bb1e0563c
+      dependson:
+        - 5bd86821-420c-4d27-a234-f84e82140f6b
+        - 13a39a9e-e186-4dc3-806d-cbdd01eb142d
+        - f184abfa-8830-47ae-99a4-e25be7846f0d
+    4c75e644-3847-4b83-9924-ee7b5a94d168:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3790
+        'y': 1510
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+    de2f3526-4299-4a93-8898-a497c31c2868:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3790
+        'y': 1400
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+      isassociatedwith:
+        - 4c75e644-3847-4b83-9924-ee7b5a94d168
+    f184abfa-8830-47ae-99a4-e25be7846f0d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3780
+        'y': 940
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+      iscontainedinside:
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+        - 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+    38f62ddb-8c7d-4446-8760-68639c0bc34a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3870
+        'y': 1040
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+    f51b7ca5-b1aa-4c8f-a2b1-1c05937d9850:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3930
+        'y': 1400
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+    d3f37e25-a0f8-42a5-8adb-21828dbaba6d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -3660
+        'y': 1400
+      z: 1
+      parent: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      embeds: []
+    f8f1cda9-b622-4882-8444-759b96600ae0:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -4310
+        'y': 1040
+      z: 0
+      embeds: []
+    4bd1971a-8306-4bea-ab73-6579b202656b:
+      size:
+        width: 150
+        height: 140
+      position:
+        x: -4380
+        'y': 1170
+      z: 0
+      embeds:
+        - 2fa452e9-fabb-4070-aa13-3bf2360c6007
+    2fa452e9-fabb-4070-aa13-3bf2360c6007:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -4340
+        'y': 1230
+      z: 1
+      parent: 4bd1971a-8306-4bea-ab73-6579b202656b
+      embeds: []
+      isassociatedwith:
+        - f8f1cda9-b622-4882-8444-759b96600ae0
+      iscontainedinside:
+        - 4bd1971a-8306-4bea-ab73-6579b202656b
+        - 4bd1971a-8306-4bea-ab73-6579b202656b
+        - 4bd1971a-8306-4bea-ab73-6579b202656b
+        - 4bd1971a-8306-4bea-ab73-6579b202656b
+      dependson:
+        - 542547d7-debd-49db-8e24-ca151dfe2be5
+    542547d7-debd-49db-8e24-ca151dfe2be5:
+      source:
+        id: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+      target:
+        id: f8f1cda9-b622-4882-8444-759b96600ae0
+      z: 0
+Resources:
+  VPC:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        Value: VPC
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 2a76de76-cb17-4805-b6c1-d7b2fb6bfc45
+  subnet1:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: eu-central-1
+      'Fn::Select':
+        - 0
+        - 'Fn::GetAZs': eu-central-1
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 28256394-0568-49ea-886f-1231dbf10b31
+  subnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: eu-north-1
+      'Fn::Select':
+        - 0
+        - 'Fn::GetAZs': eu-north-1
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 5963e42a-d415-4459-84c3-895bb1e0563c
+  instance1:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      IamInstanceProfile:
+        Ref: S3profile
+      NetworkInterfaces:
+        - SubnetId: !Ref subnet1
+      SecurityGroupIds:
+        - !Ref secuiritysshhttp
+      ImageId: !FindInMap 
+        - AWSRegionArch2AMI
+        - !Ref 'AWS::Region'
+        - !FindInMap 
+          - AWSInstanceType2Arch
+          - !Ref InstanceType
+          - Arch
+      Tags:
+        - Key: Name
+          Value: instance1
+      UserData:
+        'Fn::Base64': !Sub |
+          #!/bin/bash
+          sudo apt update -y
+          sudo apt install nginx -y 
+          sudo aws s3 cp s3://runalsh/index.html
+          sudo aws s3 cp s3://runalsh/nginx.conf /etc/nginx/nginx.conf
+          sudo systemctl start nginx
+          sudo systemctl enable nginx
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 13a39a9e-e186-4dc3-806d-cbdd01eb142d
+  instance2:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      IamInstanceProfile:
+        Ref: S3profile
+      NetworkInterfaces:
+        - SubnetId: !Ref subnet2
+      SecurityGroupIds:
+        - !Ref secuiritysshhttp
+      ImageId: !FindInMap 
+        - AWSRegionArch2AMI
+        - !Ref 'AWS::Region'
+        - !FindInMap 
+          - AWSInstanceType2Arch
+          - !Ref InstanceType
+          - Arch
+      Tags:
+        - Key: Name
+          Value: instance2
+      UserData:
+        'Fn::Base64': !Sub |
+          #!/bin/bash
+          sudo apt update -y
+          sudo apt install nginx -y 
+          sudo aws s3 cp s3://runalsh/index.html
+          sudo aws s3 cp s3://runalsh/nginx.conf /etc/nginx/nginx.conf
+          sudo systemctl start nginx
+          sudo systemctl enable nginx
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 5bd86821-420c-4d27-a234-f84e82140f6b
+  secuiritysshhttp:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 22
+          ToPort: 22
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 5812a529-f50e-4031-92e9-ab3fb6f770e4
+  AttachGateway:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId:
+        Ref: VPC
+      InternetGatewayId:
+        Ref: VPCtoglobal
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 542547d7-debd-49db-8e24-ca151dfe2be5
+  S3:
+    Type: 'AWS::IAM::Role'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4c75e644-3847-4b83-9924-ee7b5a94d168
+  S3profile:
+    Type: 'AWS::IAM::InstanceProfile'
+    Properties:
+      Roles:
+        - !Ref S3
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: de2f3526-4299-4a93-8898-a497c31c2868
+  LoadBalancer:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      SubnetMappings:
+        - SubnetId: !Ref subnet1
+        - SubnetId: !Ref subnet2
+      Type: application
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 041c0c2c-42f1-499c-bc90-fbcb76f059b7
+    DependsOn:
+      - instance2
+      - instance1
+      - LoadTargetGroup
+  LoadListener:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn:
+            Ref: LoadTargetGroup
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 38f62ddb-8c7d-4446-8760-68639c0bc34a
+  LoadTargetGroup:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      VpcId: !Ref VPC
+      HealthyThresholdCount: 2
+      Port: 80
+      Protocol: HTTP
+      TargetType: instance
+      Targets:
+        - Id: !Ref instance1
+        - Id: !Ref instance2
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: f184abfa-8830-47ae-99a4-e25be7846f0d
+  alarmrecovery1:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmActions:
+        - !Sub 'arn:aws:automate:eu-central-1:ec2:recover'
+      Namespace: AWS/EC2
+      MetricName: StatusCheckFailed_System
+      Dimensions:
+        - Name: instance1
+          Value: !Ref instance1
+      EvaluationPeriods: 10
+      Period: 30
+      Statistic: Minimum
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: 0
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: f51b7ca5-b1aa-4c8f-a2b1-1c05937d9850
+  alarmrecovery2:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmActions:
+        - !Sub 'arn:aws:automate:eu-north-1:ec2:recover'
+      Namespace: AWS/EC2
+      MetricName: StatusCheckFailed_System
+      Dimensions:
+        - Name: instance2
+          Value: !Ref instance2
+      EvaluationPeriods: 10
+      Period: 30
+      Statistic: Minimum
+      ComparisonOperator: GreaterThanThreshold
+      Threshold: 0
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d3f37e25-a0f8-42a5-8adb-21828dbaba6d
+  EC2RT4348S:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId:
+        Ref: VPC
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4bd1971a-8306-4bea-ab73-6579b202656b
+  router:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref EC2RT4348S
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref VPCtoglobal
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 2fa452e9-fabb-4070-aa13-3bf2360c6007
+    DependsOn:
+      - AttachGateway
+  VPCtoglobal:
+    Type: 'AWS::EC2::InternetGateway'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: f8f1cda9-b622-4882-8444-759b96600ae0
