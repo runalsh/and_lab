@@ -1,0 +1,13 @@
+[Unit]
+Description=Pgadmin4 Service
+After=network.target
+
+[Service]
+User=vagrant
+WorkingDirectory=/home/vagrant/pgadmin4/
+Environment="PATH=/home/vagrant/pgadmin4/bin"
+ExecStart=/home/vagrant/pgadmin4/bin/python /home/vagrant/pgadmin4/lib/python3.9/site-packages/pgadmin4/pgAdmin4.py
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

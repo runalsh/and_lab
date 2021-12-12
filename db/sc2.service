@@ -1,0 +1,13 @@
+[Unit]
+Description=mymymymy
+
+[Service]
+EnvironmentFile=/etc/sc2.cfg
+ExecReload=/bin/bash /home/vagrant/sc2.sh
+Restart=always
+RestartSec=30s
+ExecStart=/bin/bash /home/vagrant/sc2.sh
+PIDFile=/var/run/sc2.pid 
+
+[Install]
+WantedBy=timers.target
