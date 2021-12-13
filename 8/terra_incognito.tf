@@ -173,7 +173,7 @@ resource "aws_subnet" "subnet2" {
 
 # instances
 
-data "aws_ami" "amazon_ami" {
+data "aws_ami" "latest_amazon_linux" {
   owners      = ["amazon"]
   most_recent = true
   filter {
@@ -290,13 +290,19 @@ resource "aws_launch_configuration" "nginx" {
   security_groups = [aws_security_group.secuirity_group_ssh_web.id]
 
   key_name  = aws_key_pair.privatekeyssh.key_name
-  user_data = file("provision.sh")
+  user_data = <<EOF
+#!/bin/bash
+sudo yum -y update
+sudo amazon-linux-extras install nginx -y
+sudo aws s3 cp s3://runalshbucket/index.html /usr/share/nginx/html/index.html
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+EOF
   
   lifecycle {
     create_before_destroy = true
   }
 }
-
 
 
 
