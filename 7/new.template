@@ -358,8 +358,8 @@ Resources:
       SecurityGroupIngress:
         - IpProtocol: tcp
           CidrIp: 0.0.0.0/0
-          FromPort: 22
-          ToPort: 22
+          FromPort: 80
+          ToPort: 80
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 5812a529-f50e-4031-92e9-ab3fb6f770e4
