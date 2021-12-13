@@ -281,6 +281,21 @@ resource "aws_sns_topic" "dontworkingAAAAAAA" {
 
 
 
+# RUN , FOREST, RUN
+resource "aws_launch_configuration" "nginx" {
+  name_prefix     = "server"
+  image_id        = data.aws_ami.latest_amazon_linux.id
+  instance_type   = "t2.micro"
+  iam_instance_profile = aws_iam_instance_profile.instance_profile_role_for_ec2.id
+  security_groups = [aws_security_group.secuirity_group_ssh_web.id]
+
+  key_name  = aws_key_pair.privatekeyssh.key_name
+  user_data = file("provision.sh")
+  
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 
 
