@@ -1,9 +1,10 @@
-/* provider "aws" {
+ /* provider "aws" {
     region = var.aws_region
 } */
+
 variable "aws_region" {
     type    = string
-    default = "eu-central-1a"
+    default = "eu-central-1"
     description = "Default region"
 }
 
@@ -188,7 +189,7 @@ resource "aws_iam_instance_profile" "instance_profile_role_for_ec2" {
 }
 
 # load balancer
-/* resource "aws_lb" "load balancer" {
+/* resource "aws_lb" "loadbalancer" {
   name = "runalshlb"
   load_balancer_type = "application"
   subnets         = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
@@ -197,7 +198,7 @@ resource "aws_iam_instance_profile" "instance_profile_role_for_ec2" {
 }
 
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.load balancer.arn
+  load_balancer_arn = aws_lb.loadbalancer.arn
   port = "80"
   protocol = "HTTP"
   default_action {
@@ -237,7 +238,6 @@ resource "aws_elb" "load_balancer" {
 }
 
 #health check
-
 /* resource "aws_cloudwatch_metric_alarm" "heath_check" {
   alarm_name                = "terraform-test-foobar5"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
@@ -277,8 +277,34 @@ resource "aws_sns_topic" "dontworkingAAAAAAA" {
 
 # HERE CAN BE AUTO RECOVERY BUT SOME HARD - 
 # how make autorecovery - may be throw autoscaling ??? :I
-# some like sns  - >  aws_autoscaling_group  ¯\_(ツ)_/¯
+# some like sns  -->>  aws_autoscaling_group  ¯\_(ツ)_/¯
 
+## SCALE YESY YES YES YES
+resource "aws_autoscaling_group" "instsclaling" {
+    name                = "instsclaling"
+    max_size            = 5
+    min_size            = 2
+    min_elb_capacity    = 2
+    vpc_zone_identifier = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+    health_check_type   = "ELB" 
+    load_balancers      = [aws_elb.load_balancer.name]
+#	target_group_arns   = [aws_lb_target_group.http.arn]
+
+    launch_configuration = aws_launch_configuration.nginx.name
+
+    tags = [
+        {
+            key = "Name"
+            value = "nginx instance scale"
+            propagate_at_launch = true
+        }    
+    ]
+
+    lifecycle {
+        create_before_destroy = true
+    }
+    
+}
 
 
 # RUN , FOREST, RUN
