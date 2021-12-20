@@ -1,8 +1,8 @@
 script can filter snapshots from aws cli by date or\and Value Tag or \and Region and can copy and remove it
 
-At first you shoild install AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+At first you shoild install AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html and add you secuirity creds to PATH
 
-Usage: ./1.sh [-y years][-m month][-d days][-h hours][-min minutes][-o owner][-r region][-tv tagvalue][-v verbose]
+Usage: ./aws_cli.sh [-y years][-m month][-d days][-h hours][-min minutes][-o owner][-r region][-tv tagvalue][-v verbose]
 
   -y|--years   years before creating snapshot. Default: null
   
@@ -22,4 +22,4 @@ Usage: ./1.sh [-y years][-m month][-d days][-h hours][-min minutes][-o owner][-r
   
   -v|--verbose     Optional. Logging on. By default off  (Ex: -v or dont use)
   
-Example: ./1.sh [-h 1] [-m 23] [-o userowner][-t snap-] [-v]
+Example: ./aws_cli.sh [-h 1] [-m 23] [-o userowner][-t snap-] [-v]
