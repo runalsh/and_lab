@@ -78,7 +78,7 @@ fi
 
 #echo $valuenotnull 
 echo "Selected ELB Snapshots in region $region created before $date_mod $descrvaluetags"
-#echo "hui"
+
 aws ec2 describe-snapshots --region "$region" --owner-ids "$owner" $valuenotnull --query 'sort_by(Snapshots, &StartTime)' --query "Snapshots[?(StartTime>='$date_mod')].{StartTime:StartTime, SnapshotId:SnapshotId, VolumeSize:VolumeSize}" 
 
 read -p "Will copy snapshots to s3 storage? (y/n) or (yes/no): " copytos3
