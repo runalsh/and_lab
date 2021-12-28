@@ -103,7 +103,8 @@ case $copytos3 in
 				done
 					;;
 	"n"|"no")
-			 exit 0
+			 #exit 0
+			 break
 esac
 
 read -p "do you want remove snapshots? (y/n) or (yes/no): " removesnaps
